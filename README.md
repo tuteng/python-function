@@ -13,7 +13,7 @@ python_function
     └── serde.py
 ```
 
-In python, if a folder contains `__init__` file, we call it a package, python_function and pyserde are both packages. Compressing `python_function` will generate `python_funciton.zip`.
+In python, if a folder contains `__init__` file, we call it a package, python_function and pyserde are both packages. Compressing `python_function` directory will generate `python_function.zip`.
 
 ## How to use
 
