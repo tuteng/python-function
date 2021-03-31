@@ -4,12 +4,14 @@ This is an example of how to use the python function.
 
 ## Project Structure
 
+```
 python_function
 ├── __init__.py
 ├── custom_object_function.py
 └── pyserde
     ├── __init__.py
     └── serde.py
+```
 
 In python, if a folder contains a file, we call it a package, python_function and pyserde are both packages. Compressing `python_function` will generate `python_funciton.zip`.
 
