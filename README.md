@@ -48,7 +48,7 @@ python test-producer-consumer.py
 
 ### Use schema
 
-Setting schema is not currently supported in python function, this is a temporary solution.
+Setting schema is not currently supported in python function, this is a temporary solution. [This](https://github.com/apache/pulsar/issues/10114) is a track of the python function schema.
 
 ### Start pulsar standalone
 
