@@ -75,14 +75,6 @@ docker run -d -it \
 ```
 Replace `YOUR-PATH` with your file path.
 
-/pulsar/bin/pulsar-admin functions localrun \
-  --name test-function \
-  --tenant public \
-  --namespace default \
-  --py /root/python_function_schema.zip \
-  --classname python_function_schema.python_function_schema.CustomObjectFunction \
-  --inputs persistent://public/default/data-in \
-  --output persistent://public/default/data-out
 
 ### Run produce and consume
 
