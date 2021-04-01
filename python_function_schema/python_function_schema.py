@@ -18,17 +18,38 @@
 # under the License.
 #
 
+from pulsar import Function
 
-from pulsar import Function, SerDe
-from python_function.pyserde.serde import MyObject
+from pulsar.schema import *
+
+
+class Person(Record):
+    name = String()
+    phone = String()
+
+
+class Schema:
+    schema = None
+
+    def __init__(self, *args):
+        self.schema = args[0]
+
+    def __call__(self, f):
+        def wrapped(*args):
+            args = list(args)
+            args[1] = self.schema.decode(args[1].encode())
+            return self.schema.encode(f(*tuple(args))).decode("utf-8")
+
+        return wrapped
 
 # Function that deals with custom objects
 class CustomObjectFunction(Function):
   def __init__(self):
     pass
 
+  @Schema(JsonSchema(Person))
   def process(self, input, context):
-    retval = MyObject()
-    retval.a = input.a + 11
-    retval.b = input.b + 24
-    return retval
+    logger = context.get_logger()
+    logger.info("Message: {0}".format(input))
+    logger.info("Name: {0}".format(input.name))
+    return input

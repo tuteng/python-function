@@ -39,3 +39,53 @@ docker run -d -it \
     --output output-topic-3
 ```
 Replace `YOUR-PATH` with your file path.
+
+### Run produce and consume
+
+```
+python test-producer-consumer.py
+```
+
+### Use schema
+
+Setting schema is not currently supported in python function, this is a temporary solution.
+
+### Start pulsar standalone
+
+```
+docker run -d -it \
+    -p 6650:6650 \
+    -p 8080:8080 \
+    --name pulsar-standalone \
+    apachepulsar/pulsar-all:2.7.1 \
+    bin/pulsar standalone
+```
+
+### Start python function by use zip package
+
+```
+./bin/pulsar-admin functions localrun \
+  --name test-function \
+  --tenant public \
+  --namespace default \
+  --py /YOUR-PATH/python_function_schema.zip \
+  --classname python_function_schema.python_function_schema.CustomObjectFunction \
+  --inputs persistent://public/default/data-in \
+  --output persistent://public/default/data-out
+```
+Replace `YOUR-PATH` with your file path.
+
+/pulsar/bin/pulsar-admin functions localrun \
+  --name test-function \
+  --tenant public \
+  --namespace default \
+  --py /root/python_function_schema.zip \
+  --classname python_function_schema.python_function_schema.CustomObjectFunction \
+  --inputs persistent://public/default/data-in \
+  --output persistent://public/default/data-out
+
+### Run produce and consume
+
+```
+python test-function-schema-producer-consumer.py
+```
