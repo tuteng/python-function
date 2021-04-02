@@ -46,7 +46,7 @@ Replace `YOUR-PATH` with your file path.
 python test-producer-consumer.py
 ```
 
-### Use schema
+## Use schema
 
 Setting schema is not currently supported in python function, this is a temporary solution. [This](https://github.com/apache/pulsar/issues/10114) is a track of the python function schema.
 
@@ -80,4 +80,30 @@ Replace `YOUR-PATH` with your file path.
 
 ```
 python test-function-schema-producer-consumer.py
+```
+
+## Use complex schema
+
+### Start pulsar standalone
+
+```
+./bin/pulsar-admin functions localrun \
+    --name test-function \
+    --tenant public \
+    --namespace default \
+    --py /YOUR-PATH/python_function_complex_schema.zip \
+    --classname python_function_complex_schema.python_function_complex_schema.CustomObjectFunction \
+    --inputs persistent://public/default/complex-schema-in   --output persistent://public/default/complex-schema-out
+```
+
+### Run produce and consume
+
+```
+python complex-schema-consumer.py
+```
+
+Open another window for run produce:
+
+```
+python complex-schema-producer.py
 ```
