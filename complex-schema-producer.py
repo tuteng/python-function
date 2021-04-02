@@ -21,7 +21,7 @@ class SingleAccountSnap(Record):
   positions = Map(PositionInfo())
   equity = Map(EquityInfo())
   def python_type(self):
-    return self.__class__
+    return dict
 class AccountSnapShotSchema(Record):
   binance_portfolio = Map(SingleAccountSnap())
   def python_type(self):

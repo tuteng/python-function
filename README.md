@@ -108,3 +108,59 @@ Open another window for run produce:
 ```
 python complex-schema-producer.py
 ```
+
+Data produced by the producer:
+```
+e1 = EquityInfo()
+e2 = EquityInfo()
+p1 = PositionInfo()
+p2 = PositionInfo()
+b = SingleAccountSnap()
+b.account = 'hello'
+b.positions = {'positions': {'DUMP': p1, 'QDUMP': p2}}
+b.equity = {'equity': {'NOOP': e1, 'NOOP2': e2}}
+data = AccountSnapShotSchema(binance_portfolio={'tfboot': b})
+```
+
+The function processes the data, updating field account from `hello` to `world`.
+
+Data received by the consumer:
+```
+{
+	'binance_portfolio': {
+		'tfboot': {
+			'account': 'world',
+			'positions': {
+				'DUMP': {
+					'symbol': '',
+					'quantity': 0.0,
+					'markPrice': 0.0,
+					'liquidationPrice': 0.0,
+					'liquidationPercentage': 0.0,
+					'timestamp': 0
+				},
+				'QDUMP': {
+					'symbol': '',
+					'quantity': 0.0,
+					'markPrice': 0.0,
+					'liquidationPrice': 0.0,
+					'liquidationPercentage': 0.0,
+					'timestamp': 0
+				}
+			},
+			'equity': {
+				'NOOP': {
+					'total': 0.0,
+					'currency': '',
+					'timestamp': 0
+				},
+				'NOOP2': {
+					'total': 0.0,
+					'currency': '',
+					'timestamp': 0
+				}
+			}
+		}
+	}
+}
+```
