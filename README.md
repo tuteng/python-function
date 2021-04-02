@@ -99,6 +99,13 @@ Replace `YOUR-PATH` with your file path.
 
 ### Run produce and consume
 
+Create schema for input and output topic
+
+```
+python create-comple-schema.py
+```
+
+Run consumer:
 ```
 python complex-schema-consumer.py
 ```
@@ -122,6 +129,46 @@ b.equity = {'equity': {'NOOP': e1, 'NOOP2': e2}}
 data = AccountSnapShotSchema(binance_portfolio={'tfboot': b})
 ```
 
+Data received by the function:
+```
+{
+	'binance_portfolio': {
+		'tfboot': {
+			'account': 'hello',
+			'positions': {
+				'DUMP': {
+					'symbol': '',
+					'quantity': 0.0,
+					'markPrice': 0.0,
+					'liquidationPrice': 0.0,
+					'liquidationPercentage': 0.0,
+					'timestamp': 0
+				},
+				'QDUMP': {
+					'symbol': '',
+					'quantity': 0.0,
+					'markPrice': 0.0,
+					'liquidationPrice': 0.0,
+					'liquidationPercentage': 0.0,
+					'timestamp': 0
+				}
+			},
+			'equity': {
+				'NOOP': {
+					'total': 0.0,
+					'currency': '',
+					'timestamp': 0
+				},
+				'NOOP2': {
+					'total': 0.0,
+					'currency': '',
+					'timestamp': 0
+				}
+			}
+		}
+	}
+}
+```
 The function processes the data, updating field account from `hello` to `world`.
 
 Data received by the consumer:
