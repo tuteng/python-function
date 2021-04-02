@@ -95,6 +95,7 @@ python test-function-schema-producer-consumer.py
     --classname python_function_complex_schema.python_function_complex_schema.CustomObjectFunction \
     --inputs persistent://public/default/complex-schema-in   --output persistent://public/default/complex-schema-out
 ```
+Replace `YOUR-PATH` with your file path.
 
 ### Run produce and consume
 
