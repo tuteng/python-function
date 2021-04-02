@@ -6,7 +6,7 @@ class EquityInfo(Record):
   currency = String()
   timestamp = Long()
   def python_type(self):
-    return dict
+    return self.__class__
 class PositionInfo(Record):
   symbol = String()
   quantity = Float()
@@ -15,13 +15,13 @@ class PositionInfo(Record):
   liquidationPercentage = Float()
   timestamp = Long()
   def python_type(self):
-    return dict
+    return self.__class__
 class SingleAccountSnap(Record):
   account = String()
   positions = Map(PositionInfo())
   equity = Map(EquityInfo())
   def python_type(self):
-    return dict
+    return self.__class__
 class AccountSnapShotSchema(Record):
   binance_portfolio = Map(SingleAccountSnap())
   def python_type(self):
